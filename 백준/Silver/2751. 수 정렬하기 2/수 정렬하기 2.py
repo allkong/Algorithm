@@ -1,9 +1,7 @@
 import sys
-
-t = int(input())
-nums = []
-for i in range(t):
-    num = int(sys.stdin.readline())
-    nums.append(num)
-nums.sort()
-print('\n'.join(map(str, nums)))
+n = int(input())
+num = []
+for i in range(n):
+    num.append(int(sys.stdin.readline()))
+num.sort()
+print(*num, sep='\n')
