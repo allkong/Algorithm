@@ -1,7 +1,4 @@
-num = []
-s = 0
-for i in range(1, 10001):
-    num.append(i)
+num = list(range(1, 10001))
 for i in range(1, 10001):
     t = 0
     for j in str(i):
