@@ -17,7 +17,7 @@ elif s < 0:
 num.sort()
 print(num[int(n / 2)])
 
-#최빈값
+# 최빈값
 m = Counter(num).most_common()
 if len(m) > 1 and m[0][1] == m[1][1]:
     print(m[1][0])
