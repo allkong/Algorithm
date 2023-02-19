@@ -7,7 +7,7 @@ for i in range(c):
     del score[0]
     cnt = 0
     for s in score:
-        if s > sum(score) / len(score):
+        if s > sum(score) / student:
             cnt += 1
-    print(f'{cnt / len(score) * 100:.3f}', '%', sep='')
+    print(f'{cnt / student * 100:.3f}', '%', sep='')
   
