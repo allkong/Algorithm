@@ -2,8 +2,8 @@ import sys
 input = sys.stdin.readline
 
 n = int(input())
-score = [0] * 300
-stairs = [0] * 300
+score = [0] * 301
+stairs = [0] * 301
 
 for i in range(n):
     score[i] = int(input())
