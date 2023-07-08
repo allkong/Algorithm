@@ -35,11 +35,10 @@ def bfs():
 bfs()
 
 ans = 0
-for b in box:
-    for tomato in b:
-        if tomato == 0:
-            print(-1)
-            exit()
-        ans = max(ans, tomato)
+for tomatoes in box:
+    if 0 in tomatoes:
+        print(-1)
+        exit(0)
+    ans = max(ans, max(tomatoes))
 
 print(ans-1)
