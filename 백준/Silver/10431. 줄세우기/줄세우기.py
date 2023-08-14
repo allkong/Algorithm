@@ -1,19 +1,16 @@
 import sys
 input = sys.stdin.readline
 
+def bubble_sort(li):
+    cnt = 0
+    for i in range(len(li) - 1, 0, -1):
+        for j in range(i):
+            if li[j] > li[j + 1]:
+                li[j], li[j + 1] = li[j + 1], li[j]
+                cnt += 1
+    return cnt
+
 p = int(input())
 for _ in range(p):
-    res = []
-    cnt = 0
     t, *students = map(int, input().split())
-    for student in students:
-        if not res or max(res) < student:
-            res.append(student)
-        
-        for i in range(len(res)):
-            if res[i] > student:
-                res.insert(i, student)
-                cnt += len(res) - i - 1
-                break
-    
-    print(t, cnt)
+    print(t, bubble_sort(students))
