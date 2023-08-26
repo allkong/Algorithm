@@ -6,7 +6,7 @@ doll = list(map(int, input().split()))
 
 start, end = 0, 0
 cnt = [0] * 3
-ans = 1_000_000
+ans = n + 1
 
 while start < n:
     if cnt[1] < k and end < n:
@@ -18,7 +18,4 @@ while start < n:
         cnt[doll[start]] -= 1
         start += 1
 
-if ans == 1_000_000:
-    print(-1)
-else:
-    print(ans)
+print(ans if ans < n + 1 else -1)
