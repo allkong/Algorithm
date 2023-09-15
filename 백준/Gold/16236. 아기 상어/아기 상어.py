@@ -39,7 +39,6 @@ for i in range(n):
 
 while True:
     visited = [[0] * n for _ in range(n)]
-    distance = [[0] * n for _ in range(n)]
     candidate = deque(bfs(x, y, size))
 
     if not candidate:
