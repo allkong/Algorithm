@@ -34,7 +34,6 @@ for i in range(n):
     for j in range(n):
         if board[i][j] == 9:
             x, y = i, j
-            shark_x, shark_y = i, j
             break
 
 while True:
@@ -49,7 +48,6 @@ while True:
     sec += d
     board[x][y], board[nx][ny] = 0, 0
     x, y = nx, ny
-    shark_x, shark_y = nx, ny
     cnt += 1
 
     if cnt == size:
