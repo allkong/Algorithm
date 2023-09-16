@@ -1,4 +1,4 @@
-import copy
+from copy import deepcopy
 import sys
 input = sys.stdin.readline
 
@@ -40,8 +40,8 @@ def shark_position(x_shark, y_shark, board):
 
 def move_shark(x_shark, y_shark, level, board):
     global ans
-    board = copy.deepcopy(board)
-    
+    board = deepcopy(board)
+
     level += board[x_shark][y_shark][0]
     ans = max(ans, level)
     board[x_shark][y_shark][0] = 0
