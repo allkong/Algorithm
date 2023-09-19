@@ -3,27 +3,14 @@ input = sys.stdin.readline
 
 h, w = map(int, input().split())
 blocks = list(map(int, input().split()))
-
-def left_check(block, i):
-    for i in range(i-1, -1, -1):
-        if block < blocks[i]:
-            block = blocks[i]
-    return block
-
-def right_check(block, i):
-    for i in range(i+1, w):
-        if block < blocks[i]:
-            block = blocks[i]
-    return block
-
 water = 0
 
-for i in range(w):
+for i in range(1, w-1):
     block = blocks[i]
-    l = left_check(block, i)
-    r = right_check(block, i)
+    l = max(blocks[:i])
+    r = max(blocks[i+1:])
     m = min(l, r)
-    if m:
+    if m > blocks[i]:
         water += m - block
 
 print(water)
