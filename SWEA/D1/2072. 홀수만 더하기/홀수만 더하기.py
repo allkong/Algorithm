@@ -1,18 +1,8 @@
-import java.util.Scanner;
-
-class Solution {
-	public static void main(String args[]) throws Exception {
-		Scanner	sc = new Scanner(System.in);
-		int T = sc.nextInt();
-		for (int tc = 1; tc < T + 1; tc++) {
-			int sum = 0;
-			for (int idx = 0; idx < 10; idx++) {
-				int num = sc.nextInt();
-				if (num % 2 != 0) {
-					sum += num;
-				}
-			}
-			System.out.println("#" + tc + " " + sum);
-		}
-	}
-}
+T = int(input())
+for case in range(1, T+1):
+    tmp = 0
+    num = list(map(int, input().split()))
+    for n in num:
+        if n % 2 != 0:
+            tmp += n
+    print("#%d %d" % (case, tmp))
