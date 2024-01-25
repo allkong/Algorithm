@@ -1,10 +1,15 @@
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
-class Solution {
-	public static void main(String args[]) throws Exception {
-		Scanner	sc = new Scanner(System.in);
-		int a = sc.nextInt();
-		int b = sc.nextInt();
+public class Solution {
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		
+		int a = Integer.parseInt(st.nextToken());
+		int b = Integer.parseInt(st.nextToken());
 		System.out.println((a % 3 == (b + 1) % 3) ? 'A' : 'B');
 	}
 }
