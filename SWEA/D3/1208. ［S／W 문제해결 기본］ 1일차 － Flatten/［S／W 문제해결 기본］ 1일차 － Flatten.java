@@ -41,12 +41,7 @@ public class Solution {
 			// 상자 높이 배열을 정렬한다
 			Arrays.sort(boxes);
 			
-			while (dump > 0) {
-				// 마지막 박스와 첫 번째 박스의 높이 차이가 1 이하이면 덤프가 의미 없다
-				if (boxes[size - 1] - boxes[0] <= 1) {
-					break;
-				}
-				
+			while (dump > 0) {				
 				// 가장 마지막 박스에서 가장 첫 번째 박스로 덤프한다.
 				boxes[size - 1]--;
 				boxes[0]++;			
