@@ -7,8 +7,8 @@ import java.io.InputStreamReader;
  * 2. 한 자리 숫자 중에 소수인 수로 시작한다.
  *    2-1. {2, 3, 5, 7}
  * 3. 2번에서의 소수인 한 자리 옆에 한 자리 숫자를 더 붙인 두 자리 숫자가 소수인지 확인한다.
- *    3-1. 이때, 추가로 붙이는 한 자리 숫자는 {1, 3, 5, 7} 중 하나이다.
- *    3-2. 소수인 숫자는 모두 {1, 3, 5, 7} 중에 하나로 끝나기 때문이다.
+ *    3-1. 이때, 추가로 붙이는 한 자리 숫자는 {1, 3, 7, 9} 중 하나이다.
+ *    3-2. 소수인 숫자는 모두 {1, 3, 7, 9} 중에 하나로 끝나기 때문이다.
  * 4. 2번에서 만든 숫자가 입력받은 자릿수가 될 때까지 재귀를 호출한다.
  */
 public class Main {
@@ -16,7 +16,7 @@ public class Main {
 	public static StringBuilder sb;
 	
 	public static final int[] oneDigit = {2, 3, 5, 7}; // 한 자리 소수
-	public static final int[] otherDigit = {1, 3, 5, 7, 9}; // 여러 자리일 때 소수 마지막 자리
+	public static final int[] otherDigit = {1, 3, 7, 9}; // 여러 자리일 때 소수 마지막 자리
 	public static int maxDigit; // 만들어야 하는 숫자의 자릿수
 	
 	public static boolean primeNumber(int number) {
