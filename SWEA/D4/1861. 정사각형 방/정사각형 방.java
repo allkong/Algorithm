@@ -59,6 +59,7 @@ public class Solution {
     			if (rooms[nextRow][nextCol] == rooms[currentRow][currentCol] + 1) {
     				queue.offer(new int[] {nextRow, nextCol});
     				moveCount++;
+    				break;
     			}
     		}
     	}
