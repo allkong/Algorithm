@@ -25,20 +25,24 @@ public class Solution {
     
     public static int roomSize; // 방 배열의 사이즈
     public static int[][] rooms; // 방 번호를 저장하는 배열
+    public static boolean[][] visited; // 방 방문 처리
     public static Queue<int[]> queue; // 이동할 좌표와 이동한 방 개수를 담는 큐
     public static int moveCount; // 방 이동 횟수
     public static int maxMoveCount; // 가장 방을 많이 탐색한 횟수
     public static int startRoom; // 최대로 이동할 수 있는 시작 방 번호
     
-    public static int currentRow, currentCol, nextRow, nextCol;
+    public static int nextRow, nextCol;
     
-    public static void bfs(int row, int col) {
+    public static void bfs(int currentRow, int currentCol) {
+    	// 이미 지나갔던 방이면 탐색하지 않는다
+		if (visited[currentRow][currentCol]) {
+			return;
+		}
+		
     	queue = new ArrayDeque<>();
-    	currentRow = 0; currentCol = 0;
+    	queue.offer(new int[] {currentRow, currentCol}); // 탐색 시작점의 좌표
     	nextRow = 0; nextCol = 0;
     	moveCount = 1;
-    	
-    	queue.offer(new int[] {row, col}); // 탐색 시작점의 좌표
     	
     	while (!queue.isEmpty()) {
     		int[] temp = queue.poll();
@@ -58,6 +62,7 @@ public class Solution {
     			// 다음 방 번호가 현재 방 번호보다 1 더 크다면 다음 탐색하기 위해 큐에 넣는다
     			if (rooms[nextRow][nextCol] == rooms[currentRow][currentCol] + 1) {
     				queue.offer(new int[] {nextRow, nextCol});
+    				visited[nextRow][nextCol] = true;
     				moveCount++;
     				break;
     			}
@@ -85,6 +90,7 @@ public class Solution {
             // 2차원 방 배열의 모든 좌표를 시작 지점으로 삼아서 탐색한다
             for (int row = 0; row < roomSize; row++) {
             	for (int col = 0; col < roomSize; col++) {
+            		visited = new boolean[roomSize][roomSize];
             		bfs(row, col);
             		// 현재 시작 좌표에서 이동한 방 횟수가 더 크거나
             		// 이동한 방 횟수는 같지만 방 시작 번호가 더 작다면
