@@ -70,7 +70,6 @@ public class Solution {
     	}
     }
     
-    
     public static void main(String[] args) throws IOException {
         br = new BufferedReader(new InputStreamReader(System.in));
         sb = new StringBuilder();
@@ -79,6 +78,7 @@ public class Solution {
         for (int tc = 1; tc <= testCase; tc++) {
         	roomSize = Integer.parseInt(br.readLine().trim());
         	rooms = new int[roomSize][roomSize];
+        	visited = new boolean[roomSize][roomSize];
             for (int row = 0; row < roomSize; row++) {
             	st = new StringTokenizer(br.readLine().trim());
             	for (int col = 0; col < roomSize; col++) {
@@ -90,7 +90,6 @@ public class Solution {
             // 2차원 방 배열의 모든 좌표를 시작 지점으로 삼아서 탐색한다
             for (int row = 0; row < roomSize; row++) {
             	for (int col = 0; col < roomSize; col++) {
-            		visited = new boolean[roomSize][roomSize];
             		bfs(row, col);
             		// 현재 시작 좌표에서 이동한 방 횟수가 더 크거나
             		// 이동한 방 횟수는 같지만 방 시작 번호가 더 작다면
