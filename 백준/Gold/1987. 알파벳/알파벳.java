@@ -43,7 +43,6 @@ public class Main {
 				continue;
 			}
 			
-			// 현재 알파벳과 같은 알파벳이라면 탐색하지 않는다
 			// 이미 방문한 알파벳이면 탐색하지 않는다
 			if (visited[board[nextRow][nextCol]]) {
 				continue;
