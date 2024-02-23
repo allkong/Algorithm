@@ -90,10 +90,10 @@ public class Solution {
 			 
 			 st = new StringTokenizer(br.readLine().trim());
 			 for (int idx = 0; idx < size / 2; idx++) {
-				 int one = Integer.parseInt(st.nextToken());
-				 int other = Integer.parseInt(st.nextToken());
+				 int from = Integer.parseInt(st.nextToken());
+				 int to = Integer.parseInt(st.nextToken());
 				 
-				 contact[one].add(other);
+				 contact[from].add(to);
 			 }
 			 
 			 call(start);
