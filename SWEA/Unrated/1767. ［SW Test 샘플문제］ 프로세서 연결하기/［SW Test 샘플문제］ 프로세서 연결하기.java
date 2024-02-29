@@ -134,32 +134,16 @@ public class Solution {
         	connectCore(coreIdx + 1, connect + 1);
         }
 
-        // 코어의 방향을 위쪽으로 설정할 수 있다면 코어 연결
-        if (checkConnection(current, UP)) {
-            current.direction = UP;
-            connectCore(coreIdx + 1, connect + 1); // 코어 연결
+        for (int direction = 1; direction <= 4; direction++) {
+            // 다른 전선과 겹치지 않는다면 해당 방향으로 연결
+            if (checkConnection(current, direction)) {
+                current.direction = direction;
+                connectCore(coreIdx + 1, connect + 1); // 코어 연결
+                current.direction = 0; // 코어 연결 해제
+            }
         }
         
-        // 코어의 방향을 오른쪽로 설정할 수 있다면 코어 연결
-        if (checkConnection(current, RIGHT)) {
-            current.direction = RIGHT;
-            connectCore(coreIdx + 1, connect + 1); // 코어 연결
-        }
-        
-        // 코어의 방향을 아래쪽로 설정할 수 있다면 코어 연결
-        if (checkConnection(current, DOWN)) {
-            current.direction = DOWN;
-            connectCore(coreIdx + 1, connect + 1); // 코어 연결
-        }
-        
-        // 코어의 방향을 왼쪽로 설정할 수 있다면 코어 연결
-        if (checkConnection(current, LEFT)) {
-            current.direction = LEFT;
-            connectCore(coreIdx + 1, connect + 1); // 코어 연결
-        }
-        
-        // 코어 연결 해제
-        current.direction = 0;
+        // 현재 코어에 전선을 연결하지 않은 상태로 탐색
         connectCore(coreIdx + 1, connect);
         
     }
