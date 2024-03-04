@@ -3,15 +3,18 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Solution {
+	public static BufferedReader br;
+	
 	public static void main(String[] args) throws IOException {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		br = new BufferedReader(new InputStreamReader(System.in));
 		
-		String strNum = br.readLine();
-		int sum = 0;
+		String strNum = br.readLine().trim();
+		int total = 0;
 		
 		for (int idx = 0; idx < strNum.length(); idx++) {
-			sum += Character.getNumericValue(strNum.charAt(idx));
+			total += Character.getNumericValue(strNum.charAt(idx));
 		}
-		System.out.println(sum);
+		
+		System.out.println(total);
 	}
 }
