@@ -1,16 +1,28 @@
-import java.util.Scanner;
-import java.util.Arrays;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.StringTokenizer;
 
-class Solution {
-	public static void main(String args[]) throws Exception {
-		Scanner	sc = new Scanner(System.in);
-		int N = sc.nextInt();
-		int[] intArray = new int[N];
-		for (int idx = 0; idx < N; idx++) {
-			int num = sc.nextInt();
-			intArray[idx] = num;
+public class Solution {
+	public static BufferedReader br;
+	public static StringBuilder sb;
+	public static StringTokenizer st;
+	
+	public static void main(String[] args) throws IOException {
+		br = new BufferedReader(new InputStreamReader(System.in));
+		
+		int size = Integer.parseInt(br.readLine().trim());
+		ArrayList<Integer> nums = new ArrayList<>();
+		
+		st = new StringTokenizer(br.readLine().trim());
+		for (int idx = 0; idx < size; idx++) {
+			nums.add(Integer.parseInt(st.nextToken()));
 		}
-        Arrays.sort(intArray);
-		System.out.println(intArray[N/2]);
+		
+		Collections.sort(nums);
+		
+		System.out.println(nums.get(size / 2));
 	}
 }
