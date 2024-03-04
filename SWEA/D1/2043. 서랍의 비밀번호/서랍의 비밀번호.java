@@ -4,13 +4,16 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 public class Solution {
+	public static BufferedReader br;
+	public static StringTokenizer st;
+	
 	public static void main(String[] args) throws IOException {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringTokenizer st = new StringTokenizer(br.readLine());
+		br = new BufferedReader(new InputStreamReader(System.in));
 		
-		int P = Integer.parseInt(st.nextToken());
-		int K = Integer.parseInt(st.nextToken());
+		st = new StringTokenizer(br.readLine().trim());
+		int password = Integer.parseInt(st.nextToken());
+		int start = Integer.parseInt(st.nextToken());
 		
-		System.out.println(P - K + 1);
+		System.out.println(password - start + 1);
 	}
 }
