@@ -1,18 +1,32 @@
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
-class Solution {
-	public static void main(String args[]) throws Exception {
-		Scanner	sc = new Scanner(System.in);
-		int T = sc.nextInt();
-		for (int tc = 1; tc < T + 1; tc++) {
-			int sum = 0;
+public class Solution {
+	public static BufferedReader br;
+	public static StringBuilder sb;
+	public static StringTokenizer st;
+	
+	public static void main(String[] args) throws IOException {
+		br = new BufferedReader(new InputStreamReader(System.in));
+		sb = new StringBuilder();
+		
+		int testCase = Integer.parseInt(br.readLine().trim());
+		
+		for (int tc = 1; tc <= testCase; tc++) {
+			int oddTotal = 0;
+			st = new StringTokenizer(br.readLine().trim());
+			
 			for (int idx = 0; idx < 10; idx++) {
-				int num = sc.nextInt();
+				int num = Integer.parseInt(st.nextToken());
+				
 				if (num % 2 != 0) {
-					sum += num;
+					oddTotal += num;
 				}
 			}
-			System.out.println("#" + tc + " " + sum);
+			sb.append("#").append(tc).append(" ").append(oddTotal).append("\n");
 		}
+		System.out.println(sb);
 	}
 }
