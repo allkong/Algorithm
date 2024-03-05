@@ -38,11 +38,10 @@ public class Solution {
 			}
 			
 			for (int idx = 1; idx <= COUNT; idx++) {
-				if (grades[mode] < grades[idx]) {
+				// 최빈수를 찾는다
+				// 최빈수가 여러 개라면 가장 큰 점수를 저장한다 (앞에서부터 살펴보므로 무조건 idx가 더 크다)
+				if (grades[mode] <= grades[idx]) {
 					mode = idx;
-				} else if (grades[mode] == grades[idx]) {
-					// 최빈수가 여러 개라면 가장 큰 점수를 저장한다
-					mode = Math.max(mode, idx);
 				}
 			}
 			
