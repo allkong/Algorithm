@@ -3,6 +3,11 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
+/**
+ * 1. 숫자 두 개를 입력받는다.
+ * 2. 두 숫자를 나눴을 대의 몫과 나머지를 구한다.
+ *    2-1. 자바에서 몫은 /, 나머지는 %로 구한다.
+ */
 public class Solution {
 	public static BufferedReader br;
 	public static StringBuilder sb;
