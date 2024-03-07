@@ -17,9 +17,6 @@ public class Solution {
 	public static StringBuilder sb;
 	public static StringTokenizer st;
 	
-	public static int rowCount; // 행 수
-	public static List<Integer>[] triangle; // 파스칼의 삼각형
-	
 	public static void main(String[] args) throws IOException {
 		br = new BufferedReader(new InputStreamReader(System.in));
 		sb = new StringBuilder();
