@@ -22,6 +22,7 @@ public class Solution {
 	static StringBuilder sb;
 	static StringTokenizer st;
 	
+	static final int INF = Integer.MAX_VALUE;
 	static int headCount; // 사람 수
 	static int minCC; // CC 값들 중 최솟값
 	static int[][] network; // 사람 네트워크의 인접행렬
@@ -43,7 +44,7 @@ public class Solution {
 					// 0이면서 행 번호와 열 번호가 다르면 INF 값으로 저장한다
 					// 그 외는 그대로 저장한다
 					if (node == 0 && row != col) {
-						network[row][col] = Integer.MAX_VALUE;
+						network[row][col] = INF;
 					} else {
 						network[row][col] = node;
 					}
@@ -53,19 +54,11 @@ public class Solution {
 			// mid: 경유 지점, start: 출발 지점, end: 도착 지점
 			for (int mid = 0; mid < headCount; mid++) {
 				for (int start = 0; start < headCount; start++) {
-					if (start != mid) {
+					if (start != mid && network[start][mid] != INF) {
 						for (int end = 0; end < headCount; end++) {
-							if (end != mid && end != start) {
-								int midRoute = network[start][mid] + network[mid][end]; // 중간 지점을 경유해가는 경로
-								
-								// 만약 중간 지점을 경유하는 방법이 INF일 경우 INF에 다른 값을 더하면 int를 넘어가 음수 값이 되기에
-								// 다시 int의 max 값으로 조정한다.
-								if (midRoute < 0) {
-									midRoute = Integer.MAX_VALUE;
-								}
-								
+							if (end != mid && end != start && network[mid][end] != INF) {								
 								// 출발점에서 도착점으로 가는 경로와 그 중간에 mid 정점을 경유하는 경로를 비교한다
-								network[start][end] = Integer.min(network[start][end], midRoute);
+								network[start][end] = Integer.min(network[start][end], network[start][mid] + network[mid][end]);
 							}
 						}
 					}
