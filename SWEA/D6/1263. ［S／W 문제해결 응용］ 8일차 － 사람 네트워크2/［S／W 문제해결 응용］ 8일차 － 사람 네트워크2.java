@@ -58,7 +58,7 @@ public class Solution {
 						for (int end = 0; end < headCount; end++) {
 							if (end != mid && end != start && network[mid][end] != INF) {								
 								// 출발점에서 도착점으로 가는 경로와 그 중간에 mid 정점을 경유하는 경로를 비교한다
-								network[start][end] = Integer.min(network[start][end], network[start][mid] + network[mid][end]);
+								network[start][end] = Math.min(network[start][end], network[start][mid] + network[mid][end]);
 							}
 						}
 					}
