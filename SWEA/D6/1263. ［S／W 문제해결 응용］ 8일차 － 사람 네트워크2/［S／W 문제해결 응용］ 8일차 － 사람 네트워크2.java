@@ -72,7 +72,7 @@ public class Solution {
 				for (int end = 0; end < headCount; end++) {
 					total += network[start][end];
 				}
-				minCC = Integer.min(minCC, total);
+				minCC = Math.min(minCC, total);
 			}
 			
 			sb.append("#").append(tc).append(" ").append(minCC).append("\n");
