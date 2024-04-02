@@ -7,6 +7,7 @@ import java.util.StringTokenizer;
 
 public class Main {
     static BufferedReader br;
+    static StringBuilder sb;
     static StringTokenizer st;
     
     static final int SIZE = 9; // 스도쿠 배열의 크기
@@ -70,6 +71,7 @@ public class Main {
     
     public static void main(String[] args) throws IOException {
         br = new BufferedReader(new InputStreamReader(System.in));
+        sb = new StringBuilder();
         
         sudoku = new int[SIZE][SIZE];
         check = new int[3][SIZE];
@@ -105,9 +107,11 @@ public class Main {
         // 스도쿠 배열 출력
         for (int rowIdx = 0; rowIdx < SIZE; rowIdx++) {
         	for (int colIdx = 0; colIdx < SIZE; colIdx++) {
-        		System.out.print(sudoku[rowIdx][colIdx] + " ");
+        		sb.append(sudoku[rowIdx][colIdx]).append(" ");
         	}
-        	System.out.println();
+        	sb.append("\n");
         }
+        
+        System.out.println(sb);
     }
 }
