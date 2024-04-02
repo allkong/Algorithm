@@ -41,8 +41,8 @@ public class Main {
     
     /* 문자열에서 패턴을 찾는 메소드 */
     static void search() {
-    	// patternIdx: 패턴에서 현재 비교 중인 문자 위치 (접두사)
-    	// textIdx: 텍스트에서 현재 비교 중인 문자 위치 (접미사)
+    	// patternIdx: 패턴에서 현재 비교 중인 문자 위치
+    	// textIdx: 텍스트에서 현재 비교 중인 문자 위치
     	int patternIdx = 0;
     	for (int textIdx = 0; textIdx < text.length(); textIdx++) {
     		
