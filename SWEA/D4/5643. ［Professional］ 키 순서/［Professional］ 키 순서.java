@@ -11,33 +11,6 @@ public class Solution {
 	static int studentCount; // 학생 수
     static int compareCount; // 비교 횟수
     static int[][] adj; // 자신보다 키 큰 학생 정보
-    
-    private static void dfs(int current) {    	
-    	for (int idx = 1; idx <= studentCount; idx++) {
-    		// 자신보다 키가 더 큰 학생을 찾는다
-    		if (adj[current][idx] == 1) {
-    			// 탐색이 안된 정점이면 탐색한다
-    			if (adj[idx][0] == -1) {
-    				dfs(idx);
-    			}
-    			// 현재 학생보다 큰 학생이 있다면 그 관계들을 자신과의 관계에 반영
-    			if (adj[idx][0] > 0) {
-    				for (int other = 1; other <= studentCount; other++) {
-    					if (adj[idx][other] == 1) { // idx보다 큰 학생 other를 나 current와의 관계로 표현
-    						adj[current][other] = 1;
-    					}
-    				}
-    			}
-    		}
-    	}
-    	
-    	int count = 0;
-    	for (int idx = 1; idx <= studentCount; idx++) {
-    		count += adj[current][idx]; // 자신보다 큰 학생 수 카운팅 (0은 덧셈에 영향 없으니 ㄱㅊ)
-    	}
-    	
-    	adj[current][0] = count;
-    }
 	
 	public static void main(String[] args) throws IOException {
 		br = new BufferedReader(new InputStreamReader(System.in));
@@ -50,9 +23,6 @@ public class Solution {
 			compareCount = Integer.parseInt(br.readLine().trim());
 			
 			adj = new int[studentCount + 1][studentCount + 1];
-			for (int idx = 1; idx <= studentCount; idx++) {
-				adj[idx][0] = -1; // 탐색되지 않았으면 -1
-			}
 			
 			for (int idx = 0; idx < compareCount; idx++) {
 				st = new StringTokenizer(br.readLine().trim());
@@ -64,21 +34,33 @@ public class Solution {
 				adj[shorter][taller] = 1;
 			}
 			
-			
-			for (int idx = 1; idx <= studentCount; idx++) {
-				if (adj[idx][0] == -1) {
-					dfs(idx); // 탐색이 안된 정점만 탐색하러 간다
-				}
-			}
-			
-			// 자신보다 키가 더 작은 학생 수를 구한다
-			for (int row = 1; row <= studentCount; row++) {
-				for (int col = 1; col <= studentCount; col++) {
-					adj[0][col] += adj[row][col];
-				}
-			}
-			
+			// 자신과 연결된 학생과 연결된 학생..을 모두 찾아 연결시킨다
 			int answer = 0;
+			for (int mid = 1; mid <= studentCount; mid++) { // 경유
+				for (int start = 1; start <= studentCount; start++) { // 출발
+					if (start == mid || adj[start][mid] == 0) {
+						continue;
+					}
+					
+					for (int end = 1; end <= studentCount; end++) { // 도착
+						if (adj[start][end] == 1) {
+							continue;
+						}
+						
+						adj[start][end] = adj[start][mid] & adj[mid][end];
+					}
+				}
+			}
+			
+			// 자신보다 키가 더 큰 학생과 키가 더 작은 학생의 수를 센다
+			for (int start = 1; start <= studentCount; start++) {
+				for (int end = 1; end <= studentCount; end++) {
+					adj[start][0] += adj[start][end]; // start 학생보다 end 학생이 키가 더 크면 1, 모르면 0
+					adj[0][end] += adj[start][end]; // start 학생보다 end 학생이 키가 더 작으면 1, 모르면 0
+				}
+			}
+			
+			// 자신이 키가 몇 번째인지 알 수 있는 학생 수를 구한다
 			for (int idx = 1; idx <= studentCount; idx++) {
 				if (adj[idx][0] + adj[0][idx] == studentCount - 1) {
 					answer++;
