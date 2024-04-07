@@ -11,28 +11,17 @@ public class Solution {
 	static int studentCount; // 학생 수
     static int compareCount; // 비교 횟수
     static int count; // 자신보다 키가 큰 학생과 키가 작은 학생의 수
-    static int[][] students; // 학생 키 정보 배열 (유향 그래프)
+    static int[][] tallerAdj; // 자신보다 키 큰 학생 정보
+    static int[][] shorterAdj; // 자신보다 키가 작은 학생 정보
     
-    private static void searchTaller(int current, boolean[] visited) {
-    	visited[current] = true;
-    	
-    	for (int idx = 1; idx <= studentCount; idx++) {
-    		// 자신보다 키가 더 큰 학생을 아직 탐색하지 않았다면 탐색하러 간다
-    		if (students[current][idx] == 1 && !visited[idx]) {
-    			count++;
-    			searchTaller(idx, visited);
-    		}
-    	}
-    }
-    
-    private static void searchShorter(int current, boolean[] visited) {
+    private static void dfs(int current, boolean[] visited, int[][] adj) {
     	visited[current] = true;
     	
     	for (int idx = 1; idx <= studentCount; idx++) {
     		// 자신보다 키가 더 작은 학생을 아직 탐색하지 않았다면 탐색하러 간다
-    		if (students[idx][current] == 1 && !visited[idx]) {
+    		if (adj[idx][current] == 1 && !visited[idx]) {
     			count++;
-    			searchShorter(idx, visited);
+    			dfs(idx, visited, adj);
     		}
     	}
     }
@@ -47,7 +36,8 @@ public class Solution {
 			studentCount = Integer.parseInt(br.readLine().trim());
 			compareCount = Integer.parseInt(br.readLine().trim());
 			
-			students = new int[studentCount + 1][studentCount + 1];
+			tallerAdj = new int[studentCount + 1][studentCount + 1];
+			shorterAdj = new int[studentCount + 1][studentCount + 1];
 			
 			for (int idx = 0; idx < compareCount; idx++) {
 				st = new StringTokenizer(br.readLine().trim());
@@ -56,15 +46,17 @@ public class Solution {
 				int taller = Integer.parseInt(st.nextToken());
 				
 				// 키가 더 작은 학생 -> 키가 더 큰 학생 간의 관계 표시
-				students[shorter][taller] = 1;
+				tallerAdj[shorter][taller] = 1;
+				// 키가 더 큰 학생 -> 키가 더 작은 학생 간의 관계 표시
+				shorterAdj[taller][shorter] = 1;
 			}
 			
-			int answer = 0; // 자신이 키가 몇 번째인지 알 수 있는 학생 수
+			int answer = 0;
 			for (int idx = 1; idx <= studentCount; idx++) {
-				count = 0; // 자신보다 키가 작거나 크다는 걸 알 수 있는 학생 수
-				searchTaller(idx, new boolean[studentCount + 1]); // 자신보다 키가 큰 학생들을 탐색
-				searchShorter(idx, new boolean[studentCount + 1]); // 자신보다 키가 작은 학생들을 탐색
-				
+				count = 0;
+				dfs(idx, new boolean[studentCount + 1], tallerAdj);
+				dfs(idx, new boolean[studentCount + 1], shorterAdj);
+			
 				if (count == studentCount - 1) {
 					answer++;
 				}
