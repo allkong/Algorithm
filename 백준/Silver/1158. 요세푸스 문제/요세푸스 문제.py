@@ -1,14 +1,17 @@
+import sys
 from collections import deque
+input = sys.stdin.readline
 
-n, k = map(int, input().split())
-
-q = deque(range(1, n + 1))
+size, target = map(int, input().split())
+#  1 ~ n 사람 구성
+queue = deque(range(1, size+1))
 
 print('<', end='')
-while q:
-    for i in range(k - 1):
-        q.append(q.popleft())
-    print(q.popleft(), end='')
-    if q:
+# 모든 사람이 제거될 때까지 계속한다
+while queue:
+    # target-1번만큼 왼쪽으로 큐를 이동시킨다
+    queue.rotate(-target+1)
+    print(queue.popleft(), end='')
+    if queue:
         print(', ', end='')
 print('>')
