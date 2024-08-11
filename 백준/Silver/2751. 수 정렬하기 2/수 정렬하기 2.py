@@ -1,9 +1,10 @@
 import sys
 input = sys.stdin.readline
 
-n = int(input())
-num = []
-for i in range(n):
-    num.append(int(input()))
-num.sort()
-print(*num, sep='\n')
+test_case = int(input())
+numbers = []
+
+for _ in range(test_case):
+    numbers.append(int(input()))
+    
+print(*sorted(numbers))
