@@ -1,10 +1,6 @@
 import sys
 input = sys.stdin.readline
 
-test_case = int(input())
-numbers = []
-
-for _ in range(test_case):
-    numbers.append(int(input()))
-    
-print(*sorted(numbers))
+n = int(input())
+numbers = [int(input()) for _ in range(n)]
+print(*sorted(numbers), sep='\n')
