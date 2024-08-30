@@ -1,14 +1,14 @@
 import sys
 input = sys.stdin.readline
 
-n = int(input())
+card_count = int(input())
 cards = list(map(int, input().split()))
-m = int(input())
-nums = list(map(int, input().split()))
-check = {string : 0 for string in cards}
+target_count = int(input())
+targets = list(map(int, input().split()))
 
-for num in nums:
-  if num in check:
-    print(1, end=' ')
-  else:
-    print(0, end=' ')
+# 리스트보다 딕셔너리(해시 테이블)이 더 빠르다
+# 리스트: O(n), 딕셔너리: O(1)
+check = {card : 0 for card in cards}
+
+for target in targets:
+    print(1 if target in check else 0, end=' ')
