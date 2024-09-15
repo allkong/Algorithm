@@ -1,14 +1,13 @@
 import sys
+input = sys.stdin.readline
 
-n = int(input())
-lst = []
+coordinate_count = int(input()) # 좌표 개수
+coordinates = []
 
-for _ in range(n):
-    lst.append(list(map(int, sys.stdin.readline().split())))
+for _ in range(coordinate_count):
+    coordinates.append(list(map(int, sys.stdin.readline().split())))
 
-lst.sort()
+coordinates.sort()
 
-for ls in lst:
-    for l in ls:
-        print(l, end=' ')
-    print()
+for coordinate in coordinates:
+    print(coordinate[0], coordinate[1])
