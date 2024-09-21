@@ -1,14 +1,9 @@
 import sys
+input = sys.stdin.readline
 
-n = int(input())
-lst = []
+coordinate_count = int(input()) # 좌표 개수
+coordinates = [list(map(int, input().split())) for _ in range(coordinate_count)]
+coordinates.sort(key=lambda x: (x[1], x[0])) # y좌표가 증가하는 순으로, y좌표가 같으면 x좌표가 증가하는 순서로 정렬
 
-for _ in range(n):
-    lst.append(list(map(int, sys.stdin.readline().split())))
-
-lst.sort(key = lambda x : (x[1], x[0]))
-
-for ls in lst:
-    for l in ls:
-        print(l, end=' ')
-    print()
+for coordinate in coordinates:
+    print(*coordinate)
