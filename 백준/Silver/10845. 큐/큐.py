@@ -1,33 +1,27 @@
-import sys
 from collections import deque
+import sys
+input = sys.stdin.readline
 
-n = int(input())
-q = deque()
+command_count = int(input()) # 명령의 수
+queue = deque()
+for _ in range(command_count):
+    command = input().split()
 
-for _ in range(n):
-    cmd = sys.stdin.readline().split()
-
-    if cmd[0] == 'push':
-        q.append(int(cmd[1]))
-    elif cmd[0] == 'pop':
-        if q:
-            print(q.popleft())
-        else:
-            print(-1)
-    elif cmd[0] == 'size':
-        print(len(q))
-    elif cmd[0] == 'empty':
-        if q:
-            print(0)
-        else:
-            print(1)
-    elif cmd[0] == 'front':
-        if q:
-            print(q[0])
-        else:
-            print(-1)
-    elif cmd[0] == 'back':
-        if q:
-            print(q[-1])
-        else:
-            print(-1)
+    # 정수 X를 큐에 넣는 연산이다.
+    if command[0] == 'push':
+        queue.append(command[1])
+    # 큐에서 가장 앞에 있는 정수를 빼고, 그 수를 출력한다. 만약 큐에 들어있는 정수가 없는 경우에는 -1을 출력한다.
+    elif command[0] == 'pop':
+        print(queue.popleft() if queue else -1)
+    # 큐에 들어있는 정수의 개수를 출력한다.
+    elif command[0] == 'size':
+        print(len(queue))
+    # 큐가 비어있으면 1, 아니면 0을 출력한다.
+    elif command[0] == 'empty':
+        print(1 if not queue else 0)
+    # 큐의 가장 앞에 있는 정수를 출력한다. 만약 큐에 들어있는 정수가 없는 경우에는 -1을 출력한다.
+    elif command[0] == 'front':
+        print(queue[0] if queue else -1)
+    # 큐의 가장 뒤에 있는 정수를 출력한다. 만약 큐에 들어있는 정수가 없는 경우에는 -1을 출력한다.
+    elif command[0] == 'back':
+        print(queue[-1] if queue else -1)
