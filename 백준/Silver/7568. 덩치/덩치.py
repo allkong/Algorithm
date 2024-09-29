@@ -1,14 +1,13 @@
 import sys
+input = sys.stdin.readline
 
 n = int(input())
-people =[]
+people = [list(map(int, input().split())) for _ in range(n)] # index 0이 몸무게, 1이 키
 
-for _ in range(n):
-    people.append(list(map(int, sys.stdin.readline().split())))
-
-for i in people:
+for standard in people:
     rank = 1
-    for j in people:
-        if i[0] < j[0] and i[1] < j[1]:
+    for compare in people:
+        # 현재 기준인 사람보다 더 덩치가 큰 사람이 있으면 등수가 밀린다
+        if standard[0] < compare[0] and standard[1] < compare[1]:
             rank += 1
     print(rank, end=' ')
