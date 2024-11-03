@@ -22,23 +22,19 @@ def game_start():
             if visited[next]:
                 continue
 
-            # 다음 위치가 사다리랑 뱀 모두 아니면 주사위 칸만큼 이동한다
-            if routes[next] == next:
-                queue.append((next, cur_cnt + 1))
-                visited[next] = True
-
+            # 다음 위치가 사다리랑 뱀 모두 아니면 주사위 칸만큼 이동하고
             # 다음 위치가 사다리거나 뱀이면 타고 이동한다
-            else:
-                queue.append((routes[next], cur_cnt + 1))
-                visited[next] = True
-
+            queue.append((board[next], cur_cnt + 1))
+            visited[next] = True
+                
 n, m = map(int, input().split()) # 사다리의 수, 뱀의 수
-routes = [i for i in range(101)]
+board = [i for i in range(101)] # 게임맵 (현재 숫자 칸 번호)
 visited = [False] * 101
 
 for _ in range(n + m):
     x, y = map(int, input().split())
-    routes[x] = y
+    # 사다리나 뱀의 도착 좌표로 갱신한다
+    board[x] = y
 
 queue = deque([(1, 0)])
 print(game_start())
