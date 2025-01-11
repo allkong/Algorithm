@@ -22,4 +22,4 @@ for i in range(n):
 
 # 채점 후 점수 출력
 grade()
-print(f'{score}/{n * (n-1) // 2}')
+print(f'{score}/{n * (n - 1) // 2}')
