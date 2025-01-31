@@ -58,5 +58,6 @@ while True:
                 if building[z][y][x] == 'S':
                     visited[z][y][x] = True
                     queue = deque([(z, y, x, 0)])
-    
+                    break
+
     bfs()
