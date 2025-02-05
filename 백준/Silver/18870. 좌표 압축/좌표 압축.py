@@ -7,7 +7,7 @@ x = list(map(int, input().split()))
 # x[i]를 압축한 값은 x[i]`이다
 # x[i]` 값은 X[i] > x[j]를 만족하는 x[j]의 개수이다
 # => x[i]` 값은 x[i]보다 작은 수의 개수이다
-sorted_x = sorted(list(set(x)))
+sorted_x = sorted(set(x))
 
 dic = {}
 for i in range(len(sorted_x)):
