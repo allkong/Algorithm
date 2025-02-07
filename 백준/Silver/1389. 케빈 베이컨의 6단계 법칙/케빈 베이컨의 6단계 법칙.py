@@ -2,22 +2,22 @@ import sys
 input = sys.stdin.readline
 
 n, m = map(int, input().split())
-adj = [[n for _ in range(n)] for _ in range(n)]
+adj = [[n] * n for _ in range(n)]
 
+# 자기 자신과의 거리 0으로 설정
+for i in range(n):
+    adj[i][i] = 0
+
+# 간선 정보 입력
 for _ in range(m):
-    i, j = map(int, input().split())
-    adj[i - 1][j - 1] = 1
-    adj[j - 1][i - 1] = 1
+    i, j = map(lambda x: int(x) - 1, input().split())
+    adj[i][j] = adj[j][i] = 1
 
+# Floyd-Warshall 알고리즘
 for k in range(n):
     for i in range(n):
         for j in range(n):
-            if i == j:
-                adj[i][j] = 0
-            else:
-                adj[i][j] = min(adj[i][j], adj[i][k] + adj[k][j])
+            adj[i][j] = min(adj[i][j], adj[i][k] + adj[k][j])
 
-num = []
-for row in adj:
-    num.append(sum(row))
-print(num.index(min(num)) + 1)
+# 케빈 베이컨 수 계산 및 최솟값 인덱스 찾기
+print(min(range(n), key=lambda i: sum(adj[i])) + 1)
