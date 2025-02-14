@@ -2,7 +2,7 @@ import sys
 input = sys.stdin.readline
 
 n, m = map(int, input().split())
-adj = [[n] * n for _ in range(n)]
+adj = [[n - 1] * n for _ in range(n)]
 
 # 자기 자신과의 거리 0으로 설정
 for i in range(n):
