@@ -1,34 +1,30 @@
 import sys
 from collections import deque
+
 input = sys.stdin.readline
 
 def bfs(n):
-    queue = deque([(n, ())])
-    visited = set()
-    visited.add(n)
+    queue = deque([(n, "")])
+    visited = [False] * 10000
+    visited[n] = True
 
     while queue:
         cur, command = queue.popleft()
 
         if cur == B:
-            print(''.join(command))
+            print(command)
             return
 
-        for c in ('D', 'S', 'L', 'R'):
-            if c == 'D':
-                after = (cur * 2) % 10000
-            elif c == 'S':
-                after = cur - 1 if cur != 0 else 9999
-            elif c == 'L':
-                after = (cur % 1000) * 10 + cur // 1000
-            elif c == 'R':
-                after = (cur % 10) * 1000 + cur // 10
+        for c, after in (('D', (cur * 2) % 10000), 
+                         ('S', (cur - 1) % 10000),
+                         ('L', (cur % 1000) * 10 + cur // 1000),
+                         ('R', (cur % 10) * 1000 + cur // 10)):
             
-            if after not in visited:
-                queue.append((after, command + (c,)))
-                visited.add(after)
+            if not visited[after]:
+                visited[after] = True
+                queue.append((after, command + c))
 
 T = int(input())
 for _ in range(T):
-    A, B = map(int, input().split()) # 초기 값, 최종 값
+    A, B = map(int, input().split())
     bfs(A)
