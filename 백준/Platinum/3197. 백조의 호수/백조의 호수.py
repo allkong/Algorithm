@@ -26,11 +26,10 @@ def can_meet():
                 # 물 칸이면 이어서 탐색하기
                 if lake[ny][nx] == '.':
                     swan_q.append((ny, nx))
-                    swan_visited[ny][nx] = True
                 # 빙하 칸이면 다음에 이동할 큐에 넣기
                 elif lake[ny][nx] == 'X':
                     next_swan_q.append((ny, nx))
-                    swan_visited[ny][nx] = True
+                swan_visited[ny][nx] = True
 
     return False
 
@@ -53,8 +52,11 @@ def melt():
                 # 빙하 칸이면 녹이기
                 if lake[ny][nx] == 'X':
                     lake[ny][nx] = '.'
-                    water_visited[ny][nx] = True
                     next_water_q.append((ny, nx))
+                    water_visited[ny][nx] = True
+
+dy = [-1, 1, 0, 0] # 상하좌우
+dx = [0, 0, -1, 1]
 
 R, C = map(int, input().split())
 lake = [list(input().rstrip()) for _ in range(R)] # 호수 정보
@@ -65,15 +67,12 @@ water_q = deque() # 물 칸
 next_water_q = deque() # 내일 탐색할 물 칸
 water_visited = [[False] * C for _ in range(R)]
 
-dy = [-1, 1, 0, 0] # 상하좌우
-dx = [0, 0, -1, 1]
-
-# 백조의 위치 찾기
+# 백조의 위치와 물 위치 찾기
 for i in range(R):
     for j in range(C):
-        if lake[i][j] == 'L':
-            swan.append((i, j))
         if lake[i][j] in ('.', 'L'):
+            if lake[i][j] == 'L':
+                swan.append((i, j))
             next_water_q.append((i, j))
             water_visited[i][j] = True
 
