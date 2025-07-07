@@ -1,25 +1,31 @@
 import sys
 from collections import deque
 input = sys.stdin.readline
+INF = sys.maxsize
 
-def bfs(shark):
-    visited = [[False] * M for _ in range(N)]
-    queue = deque([shark + (1,)])
+def bfs(sharks):
+    queue = deque(sharks)
+    max_dis = 0 # 안전 거리의 최댓값
 
     while queue:
-        y, x, d = queue.popleft()
+        y, x = queue.popleft()
         
         for i in range(8):
             ny = y + dy[i]
             nx = x + dx[i]
             
-            if 0 <= ny < N and 0 <= nx < M and not visited[ny][nx]:
-                board[ny][nx] = min(board[ny][nx], d)
-                queue.append((ny, nx, d + 1))
-                visited[ny][nx] = True            
+            if 0 <= ny < N and 0 <= nx < M:
+                # 이전에 구한 안전 거리보다 새로 구한 안전 거리가 더 짧다면 갱신하기
+                if visited[y][x] + 1 < visited[ny][nx]:
+                    visited[ny][nx] = visited[y][x] + 1
+                    max_dis = max(max_dis, visited[ny][nx])
+                    queue.append((ny, nx))
+    
+    return max_dis
 
 N, M = map(int, input().split())
 board = [list(map(int, input().split())) for _ in range(N)]
+visited = [[INF] * M for _ in range(N)]
 sharks = []
 ans = 0
 
@@ -31,15 +37,7 @@ for i in range(N):
     for j in range(M):
         if board[i][j] == 1:
             sharks.append((i, j))
-            board[i][j] = -1
-        else:
-            board[i][j] = sys.maxsize
+            visited[i][j] = 0
 
-# 상어에서 다른 칸까지의 거리 구하기
-for shark in sharks:
-    bfs(shark)
-
-# 안전 거리 최댓값 구하기
-for i in range(N):
-    ans = max(ans, max(board[i]))
-print(ans)
+# 안전 거리 구하기
+print(bfs(sharks))
