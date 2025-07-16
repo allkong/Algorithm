@@ -1,16 +1,15 @@
 import sys
 input = sys.stdin.readline
 
-t = int(input())
+dp = [0] * 12
+dp[1] = 1
+dp[2] = 2
+dp[3] = 4
 
-cnt = [0] * 11
-cnt[1] = 1
-cnt[2] = 2
-cnt[3] = 4
+for i in range(4, 12):
+    dp[i] = dp[i - 1] + dp[i - 2] + dp[i - 3]
 
-for i in range(4, 11):
-    cnt[i] = cnt[i-1] + cnt[i-2] + cnt[i-3]
-
-for _ in range(t):
+T = int(input())
+for _ in range(T):
     n = int(input())
-    print(cnt[n])
+    print(dp[n])
