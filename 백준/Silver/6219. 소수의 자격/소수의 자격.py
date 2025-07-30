@@ -13,7 +13,7 @@ for i in range(2, B + 1):
                 sieve[j] = 0
 
 for i in range(A, B + 1):
-    if str(D) not in str(i):
+    if sieve[i] and str(D) not in str(i):
         sieve[i] = 0
 
 print(sum(sieve[A:]))
