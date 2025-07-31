@@ -2,11 +2,11 @@ import sys
 input = sys.stdin.readline
 
 def steal():
-    total = sum(house[:M]) # 훔친 돈의 양
-    cnt = 1 if total < K else 0 # 돈을 훔치는 방법의 가짓수
-
     if N == M:
-        return 1 if cnt > 0 else 0
+        return int(sum(house) < K)
+    
+    total = sum(house[:M]) # 훔친 돈의 양
+    cnt = int(total < K)# 돈을 훔치는 방법의 가짓수
 
     for i in range(1, N):
         # 현재 범위의 이전 값을 빼고 다음 값을 더하기
