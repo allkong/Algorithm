@@ -4,6 +4,7 @@ input = sys.stdin.readline
 
 def play():
     queue = deque([(S, 0)])
+    visited[S] = True
 
     while queue:
         current, cnt = queue.popleft()
@@ -13,9 +14,7 @@ def play():
             return cnt
 
         # 앞으로 이동하거나 뒤로 이동
-        for d in (F, -B):
-            next = current + d
-
+        for next in (current + F, current - B):
             if 0 < next <= N and not visited[next]:
                 visited[next] = True
                 queue.append((next, cnt + 1))
