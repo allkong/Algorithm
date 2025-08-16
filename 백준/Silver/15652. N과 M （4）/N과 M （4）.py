@@ -2,8 +2,5 @@ import sys
 from itertools import combinations_with_replacement
 input = sys.stdin.readline
 
-element_count, select_count = map(int, input().split()) # 전체 원소 개수, 선택할 원소 개수
-# 중복 조합
-# 전체 원소에서 선택할 숫자만큼 숫자를 뽑는다
-for select_element in combinations_with_replacement(range(1, element_count+1), select_count):
-    print(*select_element)
+N, M = map(int, input().split())
+print('\n'.join(' '.join(map(str, p)) for p in combinations_with_replacement(range(1, N + 1), M)))
