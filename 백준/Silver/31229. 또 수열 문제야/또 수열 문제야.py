@@ -2,7 +2,5 @@ import sys
 input = sys.stdin.readline
 
 N = int(input())
-a = 1
-for _ in range(N):
-    print(a, end=' ')
-    a += 2
+for i in range(N):
+    print(2 * i + 1)
