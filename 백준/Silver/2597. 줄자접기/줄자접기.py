@@ -2,7 +2,7 @@ import sys
 input = sys.stdin.readline
 
 length = int(input())
-dot = [sorted(map(int, input().split())) for _ in range(3)]
+dot = [list(map(int, input().split())) for _ in range(3)]
 mid = 0
 
 for i in range(3):
