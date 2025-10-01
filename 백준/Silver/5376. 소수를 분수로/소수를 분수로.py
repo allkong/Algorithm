@@ -14,14 +14,11 @@ for _ in range(int(input())):
         k = s[:i] # 비반복 구간
         r = s[i + 1:-1] # 반복 구간
 
-        m = len(k) if k else 0 # 비반복 구간 길이
+        m = len(k) # 비반복 구간 길이
         n = len(r) # 반복 구간 길이
 
-        k = int(k) if k else 0
-        r = int(r)
-
-        numerator = k * 10 ** n + r - k
+        numerator = int(k + r) - int(k or '0')
         denominator = (10 ** (m + n)) - (10 ** m)
 
-    divisor = gcd(numerator, denominator) # 최대공약수
-    print(f'{numerator // divisor}/{denominator // divisor}')
+    g = gcd(numerator, denominator) # 최대공약수
+    print(f'{numerator // g}/{denominator // g}')
