@@ -33,11 +33,10 @@ T = int(input())
 for _ in range(T):
     n, m = map(int, input().split())
     A = list(map(int, input().split()))
-    B = list(map(int, input().split()))
-    C = []
-    B.sort()
+    B = sorted(map(int, input().split()))
+    res = 0
 
     for a in A:
-        C.append(binary_search(a))
+        res += binary_search(a)
     
-    print(sum(C))
+    print(res)
