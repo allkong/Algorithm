@@ -3,7 +3,7 @@ from collections import defaultdict
 input = sys.stdin.readline
 
 N = int(input())
-calendar = defaultdict(int)
+calendar = [0] * 367
 
 for _ in range(N):
     S, E = map(int, input().split())
@@ -12,15 +12,13 @@ for _ in range(N):
         calendar[i] += 1
 
 w, h, area = 0, 0, 0
-start = min(calendar.keys())
-end = max(calendar.keys())
 
-for day in range(start, end + 1):
+for day in range(1, len(calendar)):
     if calendar[day] != 0:
         w += 1
         h = max(h, calendar[day])
 
-    if calendar[day] == 0 or day == end:
+    else:
         area += w * h
         w, h = 0, 0
 
