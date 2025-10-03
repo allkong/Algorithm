@@ -20,7 +20,7 @@ for day in range(start, end + 1):
         w += 1
         h = max(h, calendar[day])
 
-    if calendar[day] == 0 or (day == end and calendar != 0):
+    if calendar[day] == 0 or day == end:
         area += w * h
         w, h = 0, 0
 
